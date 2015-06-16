@@ -5,15 +5,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>openidm_project</artifactId>
+    <artifactId>openidm_elasticsearch</artifactId>
     <groupId>my_organization</groupId>
     <version>0.1</version>
     <packaging>pom</packaging>
-    <name>OpenIDM Boilerplate</name>
+    <name>OpenIDM ElasticSearch Sample</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <openidm.version>3.1.0</openidm.version>
+        <openidm.version>3.2.0-SNAPSHOT</openidm.version>
     </properties>
 
     <repositories>
@@ -35,8 +35,16 @@
         </repository>
     </repositories>
 
+    <modules>
+        <module>elasticsearch_connector</module>
+    </modules>
 
     <dependencies>
+        <dependency>
+            <groupId>org.forgerock.openicf.connectors</groupId>
+            <artifactId>elasticsearch-connector</artifactId>
+            <version>1.4.0.1</version>
+        </dependency>
 
         <!--
             Declare any dependencies you might need here (which are not included in OpenIDM by default). Below are two examples.
@@ -91,7 +99,7 @@
             </plugin>
 
 
-            <!-- If you need to download non-Maven dependencies for your project, I suggest 
+            <!-- If you need to download non-Maven dependencies for your project, I suggest
                  using the plugin below to automate their retreival.
              -->
             <!--plugin>

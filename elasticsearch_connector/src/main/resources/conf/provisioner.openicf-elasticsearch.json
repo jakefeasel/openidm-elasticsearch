@@ -1,0 +1,63 @@
+{
+    "name" : "elasticsearch",
+    "displayName" : "ElasticSearch",
+    "description" : "Connector to the ElasticSearch REST interface",
+    "version" : "1.4.0.1",
+    "author" : "Jake Feasel",
+    "connectorRef" : {
+        "bundleName" : "org.forgerock.openicf.connectors.elasticsearch-connector",
+        "bundleVersion" : "[1.4.0.0,2.0.0.0)",
+        "connectorName" : "org.forgerock.openicf.connectors.elasticsearch.elasticsearchConnector"
+    },
+    "producerBufferSize" : 100,
+    "connectorPoolingSupported" : true,
+    "poolConfigOption" : {
+        "maxObjects" : 1,
+        "maxIdle" : 1,
+        "maxWait" : 150000,
+        "minEvictableIdleTimeMillis" : 120000,
+        "minIdle" : 1
+    },
+    "operationTimeout" : {
+        "CREATE" : -1,
+        "TEST" : -1,
+        "AUTHENTICATE" : -1,
+        "SEARCH" : -1,
+        "UPDATE" : -1,
+        "DELETE" : -1,
+        "SYNC" : -1,
+        "SCHEMA" : -1,
+        "GET" : -1,
+        "VALIDATE" : -1,
+        "SCRIPT_ON_CONNECTOR" : -1,
+        "SCRIPT_ON_RESOURCE" : -1
+    },
+    "configurationProperties" : {
+        "serviceAddress" : "http://localhost:9200",
+        "username" : "elasticsearch",
+        "password" : "",
+        "scriptRoots" : [
+            "jar:file:&{launcher.install.location}/connectors/elasticsearch-connector-1.4.0.1.jar!/script/elasticsearch/"
+        ],
+        "classpath" : [
+            "jar:file:&{launcher.install.location}/connectors/elasticsearch-connector-1.4.0.1.jar!/scriptclass/elasticsearch/"
+        ],
+        "reloadScriptOnExecution" : false,
+        "authenticateScriptFileName" : "AuthenticateScript.groovy",
+        "customizerScriptFileName": "CustomizerScript.groovy",
+        "createScriptFileName" : "CreateScript.groovy",
+        "testScriptFileName" : "TestScript.groovy",
+        "searchScriptFileName" : "SearchScript.groovy",
+        "deleteScriptFileName" : "DeleteScript.groovy",
+        "updateScriptFileName" : "UpdateScript.groovy",
+        "syncScriptFileName" : "SyncScript.groovy",
+        "schemaScriptFileName" : "SchemaScript.groovy"
+    },
+    "systemActions" : [ ],
+    "syncFailureHandler" : {
+        "maxRetries" : 5,
+        "postRetryAction" : "logged-ignore"
+    },
+
+    "operationOptions" : {}
+}

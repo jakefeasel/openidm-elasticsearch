@@ -16,8 +16,8 @@
         </fileSet>
 
 
-        <!-- This block needs adjustment for your project, so that only 
-             the specific files you want to include from the default openidm 
+        <!-- This block needs adjustment for your project, so that only
+             the specific files you want to include from the default openidm
              configuration are included in your project -->
         <fileSet>
             <directory>${project.build.directory}/idm-staging/openidm</directory>
@@ -30,12 +30,13 @@
                 <include>logs/*</include>
                 <include>security/*</include>
 
+                <include>lib/*</include>
                 <!--
                     If you want to use the default UI, keep the below line. Otherwise, remove it.
                  -->
                 <include>ui/**</include>
 
-                <!-- The below line includes all of the default connectors shipped 
+                <!-- The below line includes all of the default connectors shipped
                     with OpenIDM. Remove this line if you want a different set. -->
                 <include>connectors/*</include>
             </includes>
@@ -78,7 +79,7 @@
 
     <dependencySets>
 
-        <!-- This will place any dependencies you have declared into the /bundle directory by default. 
+        <!-- This will place any dependencies you have declared into the /bundle directory by default.
             Be sure to update the list of excludes for anything you don't want placed in there. -->
         <dependencySet>
             <useProjectArtifact>false</useProjectArtifact>
@@ -86,12 +87,12 @@
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <!--<useTransitiveFiltering>true</useTransitiveFiltering>-->
             <excludes>
-                <exclude>org.forgerock.openicf.connectors*</exclude>
+                <exclude>org.forgerock.openicf.connectors:*</exclude>
             </excludes>
         </dependencySet>
 
         <!-- The location for each non-bundle dependency will need to be specified, as below.
-             In this example, we are unpacking any OpenICF connectors we have as a dependency 
+             In this example, we are unpacking any OpenICF connectors we have as a dependency
              into the /connectors folder.
          -->
         <dependencySet>
@@ -100,7 +101,7 @@
             <useTransitiveDependencies>false</useTransitiveDependencies>
             <!--<useTransitiveFiltering>true</useTransitiveFiltering>-->
             <includes>
-                <include>org.forgerock.openicf.connectors*</include>
+                <include>org.forgerock.openicf.connectors:*</include>
             </includes>
         </dependencySet>
 

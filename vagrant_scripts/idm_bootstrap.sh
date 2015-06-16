@@ -6,6 +6,11 @@ echo "192.168.50.4 OPENIDM_REPO_HOST" >> /etc/hosts
 
 echo "export OPENIDM_OPTS=\"${OPENIDM_OPTS}\"" >> /etc/profile
 
+
+#elasticsearch apt repo installation
+wget -O - http://packages.elasticsearch.org/GPG-KEY-elasticsearch | sudo apt-key add -
+echo 'deb http://packages.elasticsearch.org/elasticsearch/1.4/debian stable main' | sudo tee /etc/apt/sources.list.d/elasticsearch.list
+
 apt-get --yes update
 
 ## Uncomment the following lines to install Oracle JDK instead of openjdk
@@ -20,10 +25,10 @@ apt-get --yes update
 #echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
 #echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
 
-#apt-get --yes --force-yes install oracle-java7-installer 
+#apt-get --yes --force-yes install oracle-java7-installer
 
 # Below is for OpenJDK; comment this line out if you want Oracle JDK
-apt-get --yes --force-yes install openjdk-7-jdk
+apt-get --yes --force-yes install openjdk-7-jdk elasticsearch
 
 # You will always need the below three lines
 apt-get --yes --force-yes install maven npm

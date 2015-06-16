@@ -1,0 +1,25 @@
+{
+    "packageName" : "elasticsearch",
+    "displayName" : "ElasticSearch",
+    "description" : "Connector to the ElasticSearch REST interface",
+    "baseConnectorType" : "REST",
+    "version" : "0.1",
+    "author" : "Jake Feasel",
+    "providedProperties" : [{
+        "name" : "serviceAddress",
+        "value" : "http://localhost:9200",
+        "type" : "String"
+    },
+    {
+        "name" : "username",
+        "value" : "elasticsearch",
+        "type" : "String"
+    },
+    {
+        "name" : "password",
+        "value" : "",
+        "type" : "String"
+    }],
+    "properties" : [ ],
+    "objectTypes" : [ ]
+}
