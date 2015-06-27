@@ -74,4 +74,6 @@ def options = options as OperationOptions
 /* Log something to demonstrate this script executed */
 log.info("Search script, operation = " + operation.toString());
 
+println customizedConnection
+
 return new SearchResult();

@@ -26,33 +26,19 @@
  */
 package org.forgerock.openicf.connectors.elasticsearch
 
-import org.forgerock.openicf.connectors.elasticsearch.elasticsearchConfiguration
-import org.forgerock.openicf.misc.scriptedcommon.OperationType
 import org.identityconnectors.common.logging.Log
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.Method.GET
 
-/**
- * Built-in accessible objects
- **/
-
-// OperationType is TEST for this script
-def operation = operation as OperationType
-
-// The configuration class created specifically for this connector
-def configuration = configuration as elasticsearchConfiguration
-
-// Default logging facility
 def log = log as Log
-
-/**
- * Script action - Customizable
- *
- * The purpose of Test is to test the connection to the external source to ensure the
- * other actions can succeed.
- *
- * Throw an exception if the test fails
- **/
-
-/* Log something to demonstrate this script executed */
-log.info("Test script executed");
+def connection = customizedConnection as RESTClient
 
 
+connection.request(GET) {
+    uri.path = '/_cat/health'
+
+    response.success = { resp, json ->
+        /* Log something to demonstrate this script executed */
+        log.info("Successfully found a " + json.size() + " node ElasticSearch cluster");
+    }
+}
