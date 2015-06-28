@@ -31,36 +31,30 @@ import org.forgerock.openicf.misc.scriptedcommon.OperationType
 import org.identityconnectors.common.logging.Log
 import org.forgerock.openicf.misc.scriptedcommon.ICFObjectBuilder
 
+
+import groovyx.net.http.RESTClient
+import static groovyx.net.http.Method.GET
+
 import static org.identityconnectors.framework.common.objects.AttributeInfo.Flags.REQUIRED
 
-/**
- * Built-in accessible objects
- **/
-
-// OperationType is SCHEMA for this script
-def operation = operation as OperationType
-
-// The configuration class created specifically for this connector
-def configuration = configuration as elasticsearchConfiguration
-
-// Default logging facility
 def log = log as Log
 
-// The schema builder object
 def builder = builder as ICFObjectBuilder
 
-/**
- * Script action - Customizable
- *
- * Build the schema for this connector that describes what the ICF client will see.  The schema
- * might be statically built or may be built from data retrieved from the external source.
- *
- * This script should use the builder object to create the schema.
- **/
+log.info("Executing schema script for elasticsearch");
 
-/* Log something to demonstrate this script executed */
-log.info("Schema script, operation = " + operation.toString());
+return builder.schema({
 
-builder.schema({
-    
+    def connection = customizedConnection as RESTClient
+
+    connection.request(GET) {
+        uri.path = '/_cat/indices'
+
+        response.success = { resp, json ->
+            json.each({
+                println "Found " + it.index
+            })
+        }
+    }
+
 })
